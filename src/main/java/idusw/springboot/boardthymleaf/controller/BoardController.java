@@ -1,2 +1,7 @@
-package idusw.springboot.boardthymleaf.config;public class BoardController {
+package idusw.springboot.boardthymleaf.controller;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class BoardController {
 }
