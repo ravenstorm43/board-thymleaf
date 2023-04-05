@@ -1,7 +1,8 @@
 package idusw.springboot.boardthymleaf.controller;
 
-import idusw.springboot.boardthymleaf.entity.Memo;
+import idusw.springboot.boardthymleaf.entity.MemoEntity;
 import idusw.springboot.boardthymleaf.repository.MemoRepository;
+import idusw.springboot.boardthymleaf.service.MemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,15 +11,16 @@ import java.util.stream.IntStream;
 
 @Controller
 public class HomeController {
-    @Autowired
-    MemoRepository memoRepository;
+    MemoService memoService;
+    public HomeController(MemoService memoService) { // constructor DI
+        this.memoService = memoService;
+    }
+//    @Autowired
+//    MemoRepository memoRepository; // field DI(Dependency Injection)
 
-    @GetMapping("/")
+    @GetMapping("/init")
     public String goHome(){
-        IntStream.rangeClosed(1, 10).forEach(i -> {
-            Memo memo = Memo.builder().memoText("sample" + i).build();
-            memoRepository.save(memo);
-        });
+        memoService.initalize();
         return "index";
     }
 }
