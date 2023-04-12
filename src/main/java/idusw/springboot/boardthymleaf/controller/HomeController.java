@@ -44,7 +44,7 @@ public class HomeController {
         Memo memo = new Memo();
         memo.setMno(mno);
         result = memoService.read(memo); // 서비스 객체의 메소드를 호출하여 업무를 처리한다.
-        model.addAttribute("memo", result); // 처리된 결과를 전달하기 위해 model 객체의 속성으로 지정
+        model.addAttribute("memoList", result); // 처리된 결과를 전달하기 위해 model 객체의 속성으로 지정
         return "list"; // view 이름
     }
 }
